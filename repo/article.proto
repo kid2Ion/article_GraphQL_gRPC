@@ -63,5 +63,5 @@ service ArticleService {
 	rpc ReadArticle(ReadArticleRequest) returns(ReadArticleResponse);
 	rpc UpdateArticle(UpdateArticleRequest) returns(UpdateArticleResponse);
 	rpc DeleteArticle(DeleteArticleRequest) returns(DeleteArticleResponse);
-	rpc ListArticle(ListArticleRequest) returns(ListArticleResponse);
+	rpc ListArticle(ListArticleRequest) returns(stream ListArticleResponse);
 }
