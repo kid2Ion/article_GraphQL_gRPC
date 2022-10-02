@@ -102,7 +102,7 @@ func (x *articleServiceListArticleClient) Recv() (*ListArticleResponse, error) {
 }
 
 // ArticleServiceServer is the server API for ArticleService service.
-// All implementations must embed UnimplementedArticleServiceServer
+// All implementations should embed UnimplementedArticleServiceServer
 // for forward compatibility
 type ArticleServiceServer interface {
 	CreateArticle(context.Context, *CreateArticleRequest) (*CreateArticleResponse, error)
@@ -110,10 +110,9 @@ type ArticleServiceServer interface {
 	UpdateArticle(context.Context, *UpdateArticleRequest) (*UpdateArticleResponse, error)
 	DeleteArticle(context.Context, *DeleteArticleRequest) (*DeleteArticleResponse, error)
 	ListArticle(*ListArticleRequest, ArticleService_ListArticleServer) error
-	mustEmbedUnimplementedArticleServiceServer()
 }
 
-// UnimplementedArticleServiceServer must be embedded to have forward compatible implementations.
+// UnimplementedArticleServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedArticleServiceServer struct {
 }
 
@@ -132,7 +131,6 @@ func (UnimplementedArticleServiceServer) DeleteArticle(context.Context, *DeleteA
 func (UnimplementedArticleServiceServer) ListArticle(*ListArticleRequest, ArticleService_ListArticleServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListArticle not implemented")
 }
-func (UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
 
 // UnsafeArticleServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ArticleServiceServer will
