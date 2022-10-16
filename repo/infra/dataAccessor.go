@@ -34,15 +34,14 @@ func (ar *ArticleRepository) Insert(ctx context.Context, input *pb.ArticleInput)
 func (ar ArticleRepository) SelectArticleById(ctx context.Context, id int64) (*pb.Article, error) {
 	cmd := "SELECT * FROM articles WHERE id = ?"
 	row := ar.SqlHandler.Conn.QueryRow(cmd, id)
-	// pointaではないかも
-	var a *pb.Article
+	var a pb.Article
 
 	err := row.Scan(&a.Id, &a.Author, &a.Title, &a.Content)
 	if err != nil {
 		return nil, err
 	}
 
-	return a, nil
+	return &a, nil
 }
 
 func (ar ArticleRepository) Update(ctx context.Context, id int64, input *pb.ArticleInput) error {
